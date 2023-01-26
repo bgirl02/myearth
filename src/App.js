@@ -19,6 +19,8 @@ function App() {
 
   return (
     <div className="App">
+      <input placeholder="Name..." />
+      <button> New User </button>
       {users.map((user) => {
         return (
           <div>
