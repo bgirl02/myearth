@@ -6,7 +6,6 @@ import { collection, doc, getDocs } from "firebase/firestore";
 function App() {
   const [users, setUsers] = useState([]);
   const usersCollectionRef = collection(db, "users");
-  console.log(process.env.REACT_APP_FIREBASE_APIKEY);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -17,17 +16,41 @@ function App() {
     getUsers();
   }, []);
 
+  const [formData, setFormData] = useState([]);
+  const handleChange = (event) => {
+    console.log(
+      `Target name: ${event.target.name} Target value: ${event.target.value}`
+    );
+    const newFormData = {
+      ...formData,
+      [event.target.name]: event.target.value,
+    };
+    setFormData(newFormData);
+  };
+
+  const handleNewFormSubmit = (event) => {
+    event.preventDefault();
+    console.log("new forms");
+    console.log(formData);
+  };
+
   return (
     <div className="App">
-      <input placeholder="Name..." />
-      <button> New User </button>
-      {users.map((user) => {
-        return (
-          <div>
-            <h1>Name: {user.name}</h1>{" "}
-          </div>
-        );
-      })}
+      <form onSubmit={handleNewFormSubmit}>
+        <input
+          type="number"
+          name="latitude"
+          onChange={handleChange}
+          placeholder="Latitude..."
+        />
+        <input
+          type="number"
+          name="longitude"
+          onChange={handleChange}
+          placeholder="Longitude..."
+        />
+        <input type="submit" value="Make Script" />
+      </form>
     </div>
   );
 }
