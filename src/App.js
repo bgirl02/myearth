@@ -31,7 +31,23 @@ function App() {
   const handleNewFormSubmit = (event) => {
     event.preventDefault();
     console.log("new forms");
-    console.log(formData);
+    makeScript(formData);
+  };
+
+  const [script, setScript] = useState("");
+  const makeScript = (formData) => {
+    const latitude = formData["latitude"];
+    const longitude = formData["longitude"];
+    const script = `
+    var point = ee.Geometry.Point(${latitude}, ${longitude};
+    var pointCoordinates = point.coordinates();
+    print('point.coordinates(...) =', pointCoordinates);
+    Map.setCenter(${latitude}, ${longitude});
+    Map.addLayer(point,
+                 {'color': 'black'},
+                 'Geometry [black]: point');`;
+    console.log(script);
+    setScript(script);
   };
 
   return (
@@ -51,6 +67,7 @@ function App() {
         />
         <input type="submit" value="Make Script" />
       </form>
+      <div>{script}</div>
     </div>
   );
 }
