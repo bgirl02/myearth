@@ -39,7 +39,7 @@ function App() {
     const latitude = formData["latitude"];
     const longitude = formData["longitude"];
     const script = `
-    var point = ee.Geometry.Point(${latitude}, ${longitude};
+    var point = ee.Geometry.Point(${latitude}, ${longitude});
     var pointCoordinates = point.coordinates();
     print('point.coordinates(...) =', pointCoordinates);
     Map.setCenter(${latitude}, ${longitude});
@@ -67,7 +67,7 @@ function App() {
         />
         <input type="submit" value="Make Script" />
       </form>
-      <div>{script}</div>
+      <pre align="left">{script}</pre>
     </div>
   );
 }
