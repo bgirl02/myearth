@@ -52,22 +52,30 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={handleNewFormSubmit}>
-        <input
-          type="number"
-          name="latitude"
-          onChange={handleChange}
-          placeholder="Latitude..."
-        />
-        <input
-          type="number"
-          name="longitude"
-          onChange={handleChange}
-          placeholder="Longitude..."
-        />
-        <input type="submit" value="Make Script" />
-      </form>
-      <pre align="left">{script}</pre>
+      <header>
+        <h1>My Earth</h1>
+      </header>
+      <div>
+        <form onSubmit={handleNewFormSubmit}>
+          <input
+            type="number"
+            name="latitude"
+            onChange={handleChange}
+            placeholder="Latitude..."
+          />
+          <input
+            type="number"
+            name="longitude"
+            onChange={handleChange}
+            placeholder="Longitude..."
+          />
+          <input type="submit" value="Make Script" />
+        </form>
+      </div>
+      <div>
+        <h3 align="left">Google Earth Engine snippet</h3>
+        <pre align="left">{script}</pre>
+      </div>
     </div>
   );
 }
