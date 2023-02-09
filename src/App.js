@@ -43,18 +43,14 @@ function App() {
     const endDate = formData["endDate"];
     const collection = "LANDSAT/LC08/C02/T1_TOA";
     const script = `
-    var l8 = ee.ImageCollection(${collection});
     ${satellite}
     ${startDate}
     ${endDate}
-    var median = l8.filterDate('2016-01-01', '2016-12-31').median();
-    var point = ee.Geometry.Point(${latitude}, ${longitude});
-    var pointCoordinates = point.coordinates();
-    print('point.coordinates(...) =', pointCoordinates);
-    Map.setCenter(${latitude}, ${longitude});
-    Map.addLayer(point,
-                 {'color': 'black'},
-                 'Geometry [black]: point');`;
+    var l8 = ee.ImageCollection('${satellite}');
+    var median = l8.filterDate('${startDate}', '${endDate}').median();
+    Map.setCenter(${longitude}, ${latitude});
+    Map.addLayer(median);
+    `;
     console.log(script);
     setScript(script);
   };
@@ -65,7 +61,7 @@ function App() {
         <h1>My Earth</h1>
       </header>
       <div>
-        <form onSubmit={handleNewFormSubmit}>
+        <form onSubmit={handleNewFormSubmit} id="scriptform">
           <p align="left">
             <label htmlFor="latitude">Location:</label>
             &nbsp;
@@ -86,19 +82,32 @@ function App() {
           <p align="left">
             <label htmlFor="satellite">Satellite:</label>
             &nbsp;
-            <input
-              type="text"
+            <select
               name="satellite"
+              id="satellite"
+              form="scriptform"
               onChange={handleChange}
-              placeholder="Satellite..."
-            />
+            >
+              <option value="LANDSAT/LC08/C02/T1_TOA">LANDSAT</option>
+              <option value="COPERNICUS/S2_SR_HARMONIZED">Sentinel</option>
+            </select>
           </p>
           <p align="left">
             <label htmlFor="dataDate">Date:</label>
             &nbsp;
-            <input type="date" id="startDate" name="startDate"></input>
+            <input
+              type="date"
+              id="startDate"
+              name="startDate"
+              onChange={handleChange}
+            ></input>
             &nbsp; &nbsp;
-            <input type="date" id="endDate" name="endDate"></input>
+            <input
+              type="date"
+              id="endDate"
+              name="endDate"
+              onChange={handleChange}
+            ></input>
           </p>
           <input type="submit" value="Make Script" />
         </form>
