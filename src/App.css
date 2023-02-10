@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+#map-container {
+  height: 400px;
+  width: 100%;
+  background-color: #eee;
+}
+
+.flex-container {
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  padding:0 ;
+  margin: 10px;
+  list-style: none;
+}
+
+.flex-item1 {
+  background-color: white;
+  font-weight: lighter;
+  font-size: 1em;
+  text-align: left;
+}

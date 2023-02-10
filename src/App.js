@@ -43,9 +43,6 @@ function App() {
     const endDate = formData["endDate"];
     const collection = "LANDSAT/LC08/C02/T1_TOA";
     const script = `
-    ${satellite}
-    ${startDate}
-    ${endDate}
     var l8 = ee.ImageCollection('${satellite}');
     var median = l8.filterDate('${startDate}', '${endDate}').median();
     Map.setCenter(${longitude}, ${latitude});
@@ -58,7 +55,20 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>My Earth</h1>
+        <nav class="flex-container">
+          <h1 class="flex-item1">
+            <a href="https://earthengine.google.com/">
+              <img
+                alt="link to Google Earth Engine"
+                src="../geelogo.png"
+                width="52"
+                height="50"
+              ></img>
+            </a>
+          </h1>
+          <h1>My Earth</h1>
+          <h1 class="flex-item1">sign in</h1>
+        </nav>
       </header>
       <div>
         <form onSubmit={handleNewFormSubmit} id="scriptform">
