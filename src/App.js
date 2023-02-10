@@ -4,9 +4,6 @@ import "./App.css";
 function App() {
   const [formData, setFormData] = useState([]);
   const handleChange = (event) => {
-    console.log(
-      `Target name: ${event.target.name} Target value: ${event.target.value}`
-    );
     const newFormData = {
       ...formData,
       [event.target.name]: event.target.value,
@@ -34,8 +31,8 @@ function App() {
     Map.addLayer(median);
     `;
 
-    if (satellite === "LANDSAT/LC08/C02/T1_TOA") {
-      let info = `
+    if (satellite === "LANDSAT/LC08/C02/T1_L2") {
+      const info = `
       Landsat, a joint program of the USGS and NASA, 
        has been observing the Earth continuously
        from 1972 through the present day.
@@ -49,6 +46,27 @@ function App() {
        Collection 2 atmospherically corrected surface reflectance.
       Dataset Availability: April 2013–Present
       `;
+      setInfo(info);
+    } else if (satellite === "COPERNICUS/S2_SR_HARMONIZED") {
+      const info = `
+      The Copernicus Program is an ambitious initiative
+       headed by the European Commission in partnership
+       with the European Space Agency (ESA). 
+      The Sentinels are a constellation of satellites
+       developed by ESA to operationalize the
+       Copernicus program, which include all-weather
+       radar images from Sentinel-1A and 1B, high-resolution
+       optical images from Sentinel-2A and 2B, ocean and
+       land data suitable for environmental and climate
+       monitoring from Sentinel-3, as well as air quality
+       data from Sentinel-5P.
+      This dataset is especitally Sentinel-2 Level-2A orthorectified
+       atmospherically corrected surface reflectance.
+      Dataset availability: 2017-03-28 – Present
+      `;
+      setInfo(info);
+    } else if (satellite === "MODIS/061/MCD43A4") {
+      const info = `really nothing`;
       setInfo(info);
     }
     setScript(script);
@@ -102,7 +120,7 @@ function App() {
               form="scriptform"
               onChange={handleChange}
             >
-              <option value="LANDSAT/LC08/C02/T1_TOA">Landsat</option>
+              <option value="LANDSAT/LC08/C02/T1_L2">Landsat</option>
               <option value="COPERNICUS/S2_SR_HARMONIZED">Sentinel</option>
               <option value="MODIS/061/MCD43A4">MODIS</option>
             </select>
