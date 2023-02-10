@@ -16,11 +16,11 @@ function App() {
 
   const handleNewFormSubmit = (event) => {
     event.preventDefault();
-    console.log("new forms");
     makeScript(formData);
   };
 
   const [script, setScript] = useState("");
+  const [info, setInfo] = useState("");
   const makeScript = (formData) => {
     const latitude = formData["latitude"];
     const longitude = formData["longitude"];
@@ -33,7 +33,24 @@ function App() {
     Map.setCenter(${longitude}, ${latitude}, 8);
     Map.addLayer(median);
     `;
-    console.log(script);
+
+    if (satellite === "LANDSAT/LC08/C02/T1_TOA") {
+      let info = `
+      Landsat, a joint program of the USGS and NASA, 
+       has been observing the Earth continuously
+       from 1972 through the present day.
+       Today the Landsat satellites image
+       the entire Earth's surface at a 30-meter
+       resolution about once every two weeks,
+       including multispectral and thermal data.
+      The USGS produces data in 3 categories
+       for each satellite (Tier 1, Tier 2 and RT).
+      This dataset is especially Landsat 8 OLI/TIRS
+       Collection 2 atmospherically corrected surface reflectance.
+      Dataset Availability: April 2013–Present
+      `;
+      setInfo(info);
+    }
     setScript(script);
   };
 
@@ -85,7 +102,7 @@ function App() {
               form="scriptform"
               onChange={handleChange}
             >
-              <option value="LANDSAT/LC08/C02/T1_TOA">LANDSAT</option>
+              <option value="LANDSAT/LC08/C02/T1_TOA">Landsat</option>
               <option value="COPERNICUS/S2_SR_HARMONIZED">Sentinel</option>
               <option value="MODIS/061/MCD43A4">MODIS</option>
             </select>
@@ -110,6 +127,7 @@ function App() {
           <p align="left">
             <input type="submit" value="Make Script" />
           </p>
+          <p align="left">{info}</p>
         </form>
       </div>
       <div class="script-result">
