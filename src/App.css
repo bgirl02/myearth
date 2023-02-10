@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: grid;
+  grid-template: 15% auto 60% / 1fr 2fr;
 }
 
 .App-logo {
@@ -48,10 +50,12 @@ body{
   background-color: #eee;
 }
 
+/* title bar */
 .flex-container {
+  grid-column: auto / span 2;
   height: 57px;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid gray;
   display: flex;
   justify-content: space-between;
   padding-left: 20px; 
@@ -82,7 +86,45 @@ body{
   margin-bottom: 5px;
 }
 
+.script-input {
+  margin: 10px;
+  margin-top: 35px;
+  padding: 10px;
+  border: 1px solid gray;
+  grid-row: auto / span 3;
+}
+
 .script-result {
-  height: 150px;
-  border: 1px solid black;
+  margin: 10px;
+  margin-top: 35px;
+  padding: 10px;
+  padding-top: 0.1px;
+  border: 1px solid gray;
+}
+
+.map-result {
+  margin: 10px;
+  margin-top: 35px;
+  padding: 10px;
+  padding-top: 0.1px;
+  border: 1px solid gray;
+  background-color: rgb(240, 240, 240);
+}
+
+a:link {
+  color: silver;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: silver;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
 }
