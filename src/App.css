@@ -37,6 +37,11 @@
   }
 }
 
+body{
+  background-color: white;
+  font-family: 'Verdana', sans-serif;
+}
+
 #map-container {
   height: 400px;
   width: 100%;
@@ -44,18 +49,40 @@
 }
 
 .flex-container {
+  height: 57px;
   background-color: white;
   border: 1px solid black;
   display: flex;
-  justify-content: space-around;
-  padding:0 ;
+  justify-content: space-between;
+  padding-left: 20px; 
+  padding-right: 20px; 
   margin: 10px;
   list-style: none;
+}
+
+.flex-title {
+  font-size: 1.6em;
+  align-self: center;
 }
 
 .flex-item1 {
   background-color: white;
   font-weight: lighter;
+  color: gray;
   font-size: 1em;
   text-align: left;
+  padding-bottom: 2px; 
+  align-self: flex-end
+}
+
+.flex-item2 {
+  display: block;
+  background-color: white;
+  align-self: flex-end;
+  margin-bottom: 5px;
+}
+
+.script-result {
+  height: 150px;
+  border: 1px solid black;
 }

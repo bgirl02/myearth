@@ -56,17 +56,17 @@ function App() {
     <div className="App">
       <header>
         <nav class="flex-container">
-          <h1 class="flex-item1">
+          <h1 class="flex-item2">
             <a href="https://earthengine.google.com/">
               <img
                 alt="link to Google Earth Engine"
                 src="../geelogo.png"
-                width="52"
-                height="50"
+                width="40"
+                height="38"
               ></img>
             </a>
           </h1>
-          <h1>My Earth</h1>
+          <h1 class="flex-title">My Earth</h1>
           <h1 class="flex-item1">sign in</h1>
         </nav>
       </header>
@@ -119,7 +119,9 @@ function App() {
               onChange={handleChange}
             ></input>
           </p>
-          <input type="submit" value="Make Script" />
+          <p align="left">
+            <input type="submit" value="Make Script" />
+          </p>
         </form>
       </div>
       <div>
