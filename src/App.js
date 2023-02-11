@@ -66,7 +66,13 @@ function App() {
       `;
       setInfo(info);
     } else if (satellite === "MODIS/061/MCD43A4") {
-      const info = `really nothing`;
+      const info = `
+      MODIS (or Moderate Resolution Imaging Spectroradiometer) is a key instrument aboard the Terra (originally known as EOS AM-1) and Aqua (originally known as EOS PM-1) satellites.
+      This data provides 500 meter reflectance data of the MODIS "land" bands 1-7. These are adjusted using a bidirectional reflectance distribution function to model the values as if they were collected from a nadir view. The data are produced daily based on a 16-day retrieval period, with the image's date occurring on the 9th day. This product combines data from both the Terra and Aqua spacecrafts, choosing the best representative pixel from the 16-day period.
+      https://lpdaac.usgs.gov/products/mcd43a4v061/
+      https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD43A4
+      Dataset availability: 2000-02-24 – Present
+      `;
       setInfo(info);
     }
     setScript(script);
@@ -96,14 +102,16 @@ function App() {
         <form onSubmit={handleNewFormSubmit} id="scriptform">
           <p align="left">
             <label htmlFor="latitude">Location:</label>
-            &nbsp;
+            <br></br>
+            <br></br>
             <input
               type="number"
               name="latitude"
               onChange={handleChange}
               placeholder="Latitude..."
             />
-            &nbsp; &nbsp;
+            <br></br>
+            <br></br>
             <input
               type="number"
               name="longitude"
@@ -113,7 +121,8 @@ function App() {
           </p>
           <p align="left">
             <label htmlFor="satellite">Satellite:</label>
-            &nbsp;
+            <br></br>
+            <br></br>
             <select
               name="satellite"
               id="satellite"
@@ -127,14 +136,16 @@ function App() {
           </p>
           <p align="left">
             <label htmlFor="dataDate">Date:</label>
-            &nbsp;
+            <br></br>
+            <br></br>
             <input
               type="date"
               id="startDate"
               name="startDate"
               onChange={handleChange}
             ></input>
-            &nbsp; &nbsp;
+            <br></br>
+            <br></br>
             <input
               type="date"
               id="endDate"
@@ -142,6 +153,7 @@ function App() {
               onChange={handleChange}
             ></input>
           </p>
+          <br></br>
           <p align="left">
             <input type="submit" value="Make Script" />
           </p>
